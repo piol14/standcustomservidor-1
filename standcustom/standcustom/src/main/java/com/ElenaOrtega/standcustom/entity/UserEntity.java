@@ -73,10 +73,12 @@ private List<FavoritoEntity> favoritos;
         opiniones = new ArrayList<OpinionEntity>();
         stands = new ArrayList<StandEntity>();
         favoritos = new ArrayList<FavoritoEntity>();
+        detallePartida = new ArrayList<DetallePartidaEntity>();
+        
     }
  
     public UserEntity(Long id, String nombre, String email, String username,
-            String password, Boolean role, String telefono, Boolean active, boolean verified, String token) {
+            String password, Boolean role, String telefono, String token) {
         this.id = id;
         this.nombre = nombre;
         this.telefono= telefono;
@@ -85,8 +87,7 @@ private List<FavoritoEntity> favoritos;
         this.username = username;
         this.password = password;
         this.role = role;
-        this.active = active;
-        this.verified = verified;
+      ;
         this.token = token;
 
     }
@@ -204,21 +205,8 @@ public void setTokenPassword(String tokenPassword) {
     this.tokenPassword = tokenPassword;
 }
 
-public Boolean getActive() {
-    return active;
-}
 
-public void setActive(Boolean active) {
-    this.active = active;
-}
 
-public boolean isVerified() {
-    return verified;
-}
-
-public void setVerified(boolean verified) {
-    this.verified = verified;
-}
 
 public String getToken() {
     return token;

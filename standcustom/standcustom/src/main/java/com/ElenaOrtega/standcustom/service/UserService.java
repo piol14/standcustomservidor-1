@@ -86,25 +86,8 @@ public class UserService {
 
   
 
-   public Long create(UserEntity oUserEntity) {
-        oSessionService.onlyAdmins();
-        oUserEntity.setId(null);
-        oUserEntity.setPassword(STANDCUSTOMPASSWORD);
-        oUserEntity.setToken(UUID.randomUUID().toString()); 
-        oUserRepository.save(oUserEntity);
-        this.sendEmail(oUserEntity); 
-        return oUserEntity.getId();        
-    }
 
-    public Long createForUsers(UserEntity oUserEntity) {
-        oUserEntity.setId(null);
-        oUserEntity.setPassword(STANDCUSTOMPASSWORD);
-        oUserEntity.setToken(UUID.randomUUID().toString());
-        oUserEntity.setRole(true);
-        oUserRepository.save(oUserEntity);
-        this.sendEmail(oUserEntity);
-        return oUserEntity.getId();
-    }
+    
 
     /**
      * Send email to user with token
@@ -117,32 +100,25 @@ public class UserService {
     /*
      * Confirm email
      */
-    public ResponseEntity<?> confirmCorreo(String tokenVerificacion, String password) {
-        UserEntity oUser = oUserRepository.findByToken(tokenVerificacion)
-                .orElseThrow(() -> new RuntimeException("Token not found when validatimg token"));
-        oUser.setVerified(true);
-        oUser.setToken(null);
-        oUser.setPassword(password);
-        oUserRepository.save(oUser);
-        return ResponseEntity.ok("Email verified successfully!");
-    }
-    public UserEntity update(UserEntity updatedUserEntity) {
-
-
-         UserEntity oUserEntityFromDatabase = this.get(updatedUserEntity.getId());
+    public Long create(UserEntity oUserEntity) {
+        oSessionService.onlyAdmins();
+          oUserEntity.setId(null);
+          oUserEntity.setPassword(STANDCUSTOMPASSWORD);
+          return oUserRepository.save(oUserEntity).getId();
+      }
+      public UserEntity update(UserEntity updatedUserEntity) {
+        UserEntity oUserEntityFromDatabase = this.get(updatedUserEntity.getId());
         oSessionService.onlyAdminsOrUsersWithIisOwnData(oUserEntityFromDatabase.getId());
         if (oSessionService.isUser()) {
-            
             updatedUserEntity.setRole(oUserEntityFromDatabase.getRole());
-            updatedUserEntity.setPassword(STANDCUSTOMPASSWORD );
-            return oUserRepository.save(oUserEntityFromDatabase);
+            updatedUserEntity.setPassword(STANDCUSTOMPASSWORD);
+            return oUserRepository.save(updatedUserEntity);
         } else {
-            
-            updatedUserEntity.setPassword(STANDCUSTOMPASSWORD );
-            return oUserRepository.save(oUserEntityFromDatabase);
+            updatedUserEntity.setPassword(STANDCUSTOMPASSWORD);
+            return oUserRepository.save(updatedUserEntity);
         }
-       
     }
+    
     public Long delete(Long id) {
         oSessionService.onlyAdmins();
         oUserRepository.deleteById(id);
@@ -154,28 +130,8 @@ public class UserService {
         Pageable oPageable = PageRequest.of((int) (Math.random() * oUserRepository.count()), 1);
         return oUserRepository.findAll(oPageable).getContent().get(0);
     }
-    public ResponseEntity<?> confirmCorreo(String tokenVerificacion) {
-        UserEntity oUser = oUserRepository.findByToken(tokenVerificacion)
-                .orElseThrow(() -> new RuntimeException("Token not found when validatimg token"));
-        oUser.setVerified(true);
-        oUser.setToken(null);
-        oUserRepository.save(oUser);
-        return ResponseEntity.ok("Email verified successfully!");        
-    }
-    public Long signUp(UserEntity nuevoUsuario) {
-        if (  oUserRepository.findByUsername(nuevoUsuario.getUsername()).isPresent()) {
-            throw new RuntimeException("El nombre de usuario ya está en uso");
-        }
-
-        if (  oUserRepository.findByEmail(nuevoUsuario.getEmail()).isPresent()) {
-            throw new RuntimeException("El correo electrónico ya está registrado");
-        }
-
-        nuevoUsuario.setRole(true);
-
-       
-        return oUserRepository.save(nuevoUsuario).getId();
-    }
+   
+   
 public Long populate(Integer amount) {
     oSessionService.onlyAdmins();
         for (int i = 0; i < amount; i++) {

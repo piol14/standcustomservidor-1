@@ -46,14 +46,9 @@ public class UserApi {
 
 
 
+    @PostMapping("")
     public ResponseEntity<Long> create(@RequestBody UserEntity oUserEntity) {
-        oUserEntity.setToken(UUID.randomUUID().toString()); // genero el token
-        oUserService.sendEmail(oUserEntity); // envio el email
         return ResponseEntity.ok(oUserService.create(oUserEntity));
-    }
-      @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
-    public ResponseEntity<?> confirmUserAccount(@RequestParam("token")String confirmationToken) {
-        return oUserService.confirmCorreo(confirmationToken);
     }
     @PutMapping("")
     public ResponseEntity<UserEntity> update(@RequestBody UserEntity oUserEntity) {
@@ -64,15 +59,7 @@ public class UserApi {
     public ResponseEntity<Long> delete(@PathVariable("id") Long id) {
         return ResponseEntity.ok(oUserService.delete(id));
     }
-     @PostMapping("/signup")
-    public ResponseEntity<Long> signUp(@RequestBody UserEntity nuevoUsuario) {
-        try {
-            Long userId = oUserService.signUp(nuevoUsuario);
-            return ResponseEntity.ok(userId);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
-    }
+     
 
     @GetMapping("")
     public ResponseEntity<Page<UserEntity>> getPage(
