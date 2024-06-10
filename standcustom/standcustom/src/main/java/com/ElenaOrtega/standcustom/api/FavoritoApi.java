@@ -53,13 +53,13 @@ public class FavoritoApi {
     @GetMapping("/byusuario/{id}")
     public ResponseEntity<Page<FavoritoEntity>> getByUser(@PathVariable("id")  @PageableDefault(size = PAGE_TAMANYO, sort = {
         "id" }, direction = Sort.Direction.ASC) Long id, Pageable oPageable) {
-        return ResponseEntity.ok(favoritoService.getOpinionesByUser(id, oPageable));
+        return ResponseEntity.ok(favoritoService.getFavoritosByUser(id, oPageable));
     }
 
     @GetMapping("/bystand/{id}")
     public ResponseEntity<Page<FavoritoEntity>> getByStand(@PathVariable("id")  @PageableDefault(size = PAGE_TAMANYO, sort = {
             "id" }, direction = Sort.Direction.ASC) Long id, Pageable oPageable) {
-        return ResponseEntity.ok(favoritoService.getOpinionesByStand(id, oPageable));
+        return ResponseEntity.ok(favoritoService.getFavoritosByStand(id, oPageable));
     }
     @GetMapping("")
     public ResponseEntity<Page<FavoritoEntity>> getPage(

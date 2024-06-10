@@ -28,7 +28,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/email")
 @CrossOrigin
 public class EmailController {
-    
+    @Autowired
     EmailService oEmailService;
 
     @Autowired

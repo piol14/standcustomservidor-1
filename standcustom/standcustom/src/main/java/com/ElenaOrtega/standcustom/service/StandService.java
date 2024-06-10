@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.ElenaOrtega.standcustom.entity.FavoritoEntity;
 import com.ElenaOrtega.standcustom.entity.StandEntity;
 import com.ElenaOrtega.standcustom.helper.StandPopulator;
 import com.ElenaOrtega.standcustom.repository.StandRepository;
@@ -112,7 +113,9 @@ public StandEntity getOneRandom() {
         long countAfterDeletion = standRepository.count();
         return countBeforeDeletion - countAfterDeletion;
     }
-
+ public Page<StandEntity> getStandsByUser(Long id_usuario, Pageable oPageable) {
+        return standRepository.findByUsuarioId(id_usuario, oPageable);
+    }
 
 
 }

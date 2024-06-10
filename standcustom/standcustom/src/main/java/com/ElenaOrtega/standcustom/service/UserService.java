@@ -109,15 +109,27 @@ public class UserService {
       public UserEntity update(UserEntity updatedUserEntity) {
         UserEntity oUserEntityFromDatabase = this.get(updatedUserEntity.getId());
         oSessionService.onlyAdminsOrUsersWithIisOwnData(oUserEntityFromDatabase.getId());
+    
         if (oSessionService.isUser()) {
+            // Ensure the role and password are not changed by a user
             updatedUserEntity.setRole(oUserEntityFromDatabase.getRole());
-            updatedUserEntity.setPassword(STANDCUSTOMPASSWORD);
-            return oUserRepository.save(updatedUserEntity);
+            updatedUserEntity.setPassword(oUserEntityFromDatabase.getPassword());
         } else {
+            // Allow admins to change the role and reset the password to the default password
             updatedUserEntity.setPassword(STANDCUSTOMPASSWORD);
-            return oUserRepository.save(updatedUserEntity);
+            oUserEntityFromDatabase.setRole(updatedUserEntity.getRole());
         }
+    
+        // Copy other fields to ensure only allowed fields are updated
+        oUserEntityFromDatabase.setNombre(updatedUserEntity.getNombre());
+        oUserEntityFromDatabase.setEmail(updatedUserEntity.getEmail());
+        oUserEntityFromDatabase.setTelefono(updatedUserEntity.getTelefono());
+        oUserEntityFromDatabase.setUsername(updatedUserEntity.getUsername());
+    
+        return oUserRepository.save(oUserEntityFromDatabase);
     }
+    
+
     
     public Long delete(Long id) {
         oSessionService.onlyAdmins();

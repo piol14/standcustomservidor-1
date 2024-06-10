@@ -67,11 +67,11 @@ public class FavoritoService {
         }
     }
     
- public Page<FavoritoEntity> getOpinionesByUser(Long id_usuario, Pageable oPageable) {
+ public Page<FavoritoEntity> getFavoritosByUser(Long id_usuario, Pageable oPageable) {
         return favoritoRepository.findByUserId(id_usuario, oPageable);
     }
 
-    public Page<FavoritoEntity> getOpinionesByStand(Long id_producto, Pageable oPageable) {
+    public Page<FavoritoEntity> getFavoritosByStand(Long id_producto, Pageable oPageable) {
         return favoritoRepository.findByStandId(id_producto, oPageable);
     }
     
