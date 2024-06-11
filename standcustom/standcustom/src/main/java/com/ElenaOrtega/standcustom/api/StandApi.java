@@ -57,6 +57,11 @@ public class StandApi {
         "id" }, direction = Sort.Direction.ASC) Long id, Pageable oPageable) {
         return ResponseEntity.ok(standService.getStandsByUser(id, oPageable));
     }
+    @GetMapping("/bycategoria/{id}")
+    public ResponseEntity<Page<StandEntity>> getByCategoria(@PathVariable("id")  @PageableDefault(size = PAGE_TAMANYO, sort = {
+        "id" }, direction = Sort.Direction.ASC) Long id, Pageable oPageable) {
+        return ResponseEntity.ok(standService.getStandsByCategoria(id, oPageable));
+    }
     @PostMapping("/populate/{amount}")
     public ResponseEntity<Long> populate(@PathVariable("amount") Integer amount) {
         return ResponseEntity.ok(standService.populate(amount));

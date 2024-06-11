@@ -116,6 +116,8 @@ public StandEntity getOneRandom() {
  public Page<StandEntity> getStandsByUser(Long id_usuario, Pageable oPageable) {
         return standRepository.findByUsuarioId(id_usuario, oPageable);
     }
-
+public Page<StandEntity> getStandsByCategoria(Long id_usuario, Pageable oPageable) {
+        return standRepository.findByCategoriaId(id_usuario, oPageable);
+    }
 
 }
