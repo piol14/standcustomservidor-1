@@ -44,7 +44,7 @@ public class UserService {
         mailMessage.setTo(user.getEmail());
         mailMessage.setSubject("Complete Registration!");
         mailMessage.setText("To confirm your account, please click here : "
-                + "http://localhost:4200/user/confirm-account?token=" + user.getToken());
+                + "https:/standcustom.es/initial/user/confirm-account?token=" + user.getToken());
         oEmailService.sendEmail(mailMessage);
     }
     public UserEntity getByEmail(String email) {

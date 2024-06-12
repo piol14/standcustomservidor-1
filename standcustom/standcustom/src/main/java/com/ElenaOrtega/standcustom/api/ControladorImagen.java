@@ -44,7 +44,7 @@ public class ControladorImagen {
     public Map<String, String> uploadFile(@RequestParam("file") MultipartFile multipartFile) {
         String path = storageService.store(multipartFile);
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
-        String url = ServletUriComponentsBuilder.fromHttpUrl(host).path("/media/").path(path).toUriString();
+        String url = ServletUriComponentsBuilder.fromHttpUrl(host).path("initial/media/").path(path).toUriString();
         return Map.of("url", url);
     }
 
