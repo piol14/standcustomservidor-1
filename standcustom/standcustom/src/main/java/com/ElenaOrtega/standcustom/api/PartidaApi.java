@@ -11,7 +11,7 @@ import com.ElenaOrtega.standcustom.service.PartidaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/partida")
+@RequestMapping("/initial/partida")
 public class PartidaApi {
 
     @Autowired

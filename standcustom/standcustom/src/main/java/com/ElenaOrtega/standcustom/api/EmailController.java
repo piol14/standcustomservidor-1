@@ -25,7 +25,7 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping("/email")
+@RequestMapping("/initial/email")
 @CrossOrigin
 public class EmailController {
     @Autowired

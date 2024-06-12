@@ -20,7 +20,7 @@ import com.ElenaOrtega.standcustom.service.CategoriaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/categoria")
+@RequestMapping("/initial/categoria")
 public class CategoriaApi {
 
 

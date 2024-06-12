@@ -27,7 +27,7 @@ import com.ElenaOrtega.standcustom.service.UserService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/initial/usuario")
 public class UserApi {
 
     @Autowired

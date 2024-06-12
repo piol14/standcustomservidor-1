@@ -16,7 +16,7 @@ import com.ElenaOrtega.standcustom.service.StandService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/stand")
+@RequestMapping("/initial/stand")
 public class StandApi {
     private static final int PAGE_TAMANYO = 10;
 

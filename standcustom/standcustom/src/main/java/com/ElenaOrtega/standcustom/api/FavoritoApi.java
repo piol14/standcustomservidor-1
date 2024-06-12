@@ -25,7 +25,7 @@ import com.ElenaOrtega.standcustom.service.FavoritoService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/favorito")
+@RequestMapping("/initial/favorito")
 public class FavoritoApi {
     private static final int PAGE_TAMANYO = 10;
     @Autowired

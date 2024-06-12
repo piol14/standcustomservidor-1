@@ -31,7 +31,7 @@ import lombok.AllArgsConstructor;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/media")
+@RequestMapping("/initial/media")
 @AllArgsConstructor
 public class ControladorImagen {
    

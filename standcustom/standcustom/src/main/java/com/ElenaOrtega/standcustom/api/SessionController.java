@@ -13,7 +13,7 @@ import com.ElenaOrtega.standcustom.service.SessionService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/session")
+@RequestMapping("/initial/session")
 public class SessionController {
 
     @Autowired

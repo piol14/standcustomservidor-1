@@ -14,7 +14,7 @@ import org.springframework.data.domain.Sort;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/opinion")
+@RequestMapping("/initial/opinion")
 
 public class OpinionApi {
   private static final int PAGE_TAMANYO = 10;
